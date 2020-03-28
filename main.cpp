@@ -11,22 +11,29 @@ int getCycleLength(int n);
 int main()
 {
     vector<int> numbersCycleLength;
-    vector<int>::iterator maxIt;
     string line;
-    int i, j, max, index;
+    int i, j, max;
 
     while (getline(cin, line))
     {
         istringstream ss(line);
         ss >> i >> j;
-        for (int it = i; it <= j; it++)
+        if (i < j)
         {
-            numbersCycleLength.push_back(getCycleLength(it));
+            for (int it = i; it <= j; it++)
+            {
+                numbersCycleLength.push_back(getCycleLength(it));
+            }
+        }
+        else
+        {
+            for (int it = j; it <= i; it++)
+            {
+                numbersCycleLength.push_back(getCycleLength(it));
+            }
         }
 
-        maxIt = max_element(numbersCycleLength.begin(), numbersCycleLength.end());
-        index = distance(numbersCycleLength.begin(), maxIt);
-        max = numbersCycleLength[index];
+        max = *max_element(numbersCycleLength.begin(), numbersCycleLength.end());
         cout << i << " " << j << " " << max << endl;
         numbersCycleLength.clear();
     }
