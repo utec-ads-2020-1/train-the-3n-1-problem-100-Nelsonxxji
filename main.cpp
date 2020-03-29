@@ -43,25 +43,18 @@ int main()
 
 int getCycleLength(int n)
 {
-    int count = 0;
-    while (true)
+    int count = 1;
+    while (n != 1)
     {
-        count++;
-        if (n == 1)
+        if (n % 2 == 0)
         {
-            break;
+            n = n / 2;
         }
         else
         {
-            if (n % 2 == 0)
-            {
-                n = n / 2;
-            }
-            else
-            {
-                n = 3 * n + 1;
-            }
+            n = 3 * n + 1;
         }
+        count++;
     }
     return count;
 }
